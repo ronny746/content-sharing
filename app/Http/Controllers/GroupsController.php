@@ -47,6 +47,7 @@ public function allgroups(){
      */
     public function createGroup(Request $request)
     {
+        $imagename = "";
         if ($request->hasFile('image')) {
             $image = $request->image;
             $image->move('GroupImage/', $image->getClientOriginalName());

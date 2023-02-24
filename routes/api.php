@@ -7,7 +7,7 @@ use App\Http\Controllers\GroupsController;
 use App\Http\Controllers\JoinGroupController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Help;
-
+use App\Http\Controllers\MessageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,5 +48,8 @@ Route::get('/privacy-policy',[Help::class,'privacy']);
 Route::get('/term-condition',[Help::class,'termcondition']);
 
 
+Route::post('/send-group-message',[MessageController::class,'groupMessage']);
+Route::get('/get-group-message/{group_id}',[MessageController::class,'getGroupmessage']);
+Route::delete('/delete-message/{id}',[MessageController::class,'destroy']);
 
 Route::post('/send-otp',[Controller::class,'sendOtp']);
