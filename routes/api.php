@@ -53,3 +53,4 @@ Route::get('/get-group-message/{group_id}',[MessageController::class,'getGroupme
 Route::delete('/delete-message/{id}',[MessageController::class,'destroy']);
 
 Route::post('/send-otp',[Controller::class,'sendOtp']);
+//Route::post('/send-otp',[Controller::class,'sendOtp']);
