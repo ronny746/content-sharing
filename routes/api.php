@@ -8,6 +8,7 @@ use App\Http\Controllers\JoinGroupController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Help;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,7 +40,7 @@ Route::get('/groupbyId/{id}',[GroupsController::class,'groupById']);
 Route::get('/students',[Controller::class,'allstudents']);
 Route::get('/teachers',[Controller::class,'allteachers']);
 Route::get('/staff',[Controller::class,'allstaff']);
-
+Route::post('/send-feedback',[FeedbackController::class,'create']);
 Route::get('/contact-us',[Help::class,'contactus']);
 
 Route::get('/about-us',[Help::class,'aboutus']);
