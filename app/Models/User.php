@@ -26,6 +26,7 @@ class User extends Authenticatable
         'branch',
         'year',
         'role',
+        'token',
         'password',
     ];
 

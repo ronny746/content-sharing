@@ -27,6 +27,7 @@ class Controller extends BaseController
             'l_name'=>$request->l_name,
             'mobile'=>$request->mobile,
             'branch'=>$request->branch,
+             'token'=>$request->token,
             'year'=>$request->year,
             'roll_number'=>$request->roll_number,
             'role'=>$request->role,
@@ -83,6 +84,7 @@ public function update(Request $request){
          $user->f_name=$request->f_name;
          $user->l_name=$request->l_name;
          $user->branch=$request->branch;
+         $user->token=$request->token;
          $user->roll_number=$request->roll_number;
          $user->year=$request->year;
          $user->role=$request->role;
@@ -116,6 +118,11 @@ public function update(Request $request){
         'Result'=>User::where('role','staff')->get()
     ]);
  }
+ public function alluser(){
+    return ([
+        'Result'=>User::get()
+    ]);
+ }
 
 
  public function sendOtp(Request $request){
@@ -124,4 +131,5 @@ public function update(Request $request){
      return $otp;
      $user = User::where('mobile','=',$request->mobile)->update(['password'=>$otp]);
  }
+ 
 }

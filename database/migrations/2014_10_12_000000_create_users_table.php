@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('f_name');
             $table->string('l_name');
             $table->string('profile');
+            $table->string('token');
             $table->string('roll_number')->nullable();
             $table->string('mobile')->unique();
             $table->string('branch')->nullable();

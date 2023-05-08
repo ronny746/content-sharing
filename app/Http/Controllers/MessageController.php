@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
+use App\Models\yourRequest;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -62,6 +63,63 @@ class MessageController extends Controller
         ]);
     }
     }
+    public function sendRequest(Request $request)
+    {
+       
+        //return $user;
+        $group = yourRequest::create([
+            'user_id'=>$request->user_id,
+             'title'=>$request->title,
+             'token'=>$request->token,
+             'status'=>"false"
+          ]);
+            
+        if($group){
+            return response([
+                'result'=>"Request send!"
+            ]);
+    }else{
+
+        return response([
+            'result'=>"Request Not send!"
+        ]);
+    }
+    }
+    public function getRequest()
+    {
+       
+        $r = yourRequest::get();
+
+        return response([
+            'result'=>$r
+        ]);
+       
+    }
+    public function updateRequest(Request $request){
+        //return $request;
+           
+        
+         $re= yourRequest::where(['title'=>$request->title])->first();
+        
+         if($re!=null){
+             $re->title=$request->title;
+             $re->token=$request->token;
+             $re->user_id=$request->user_id;
+             $re->status=$request->status;
+           
+    
+             $re->save();
+    
+             return response([
+                 'result'=>$re
+             ]);
+             
+         }else{
+    
+             return ["Result"=>"Something Wrong please try again."];
+         }
+     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -120,6 +178,14 @@ class MessageController extends Controller
         $message->delete();
         return response([
             'Result'=>"Message deleted!"
+        ]);
+    }
+    public function deletRequest($id)
+    {
+        $message = yourRequest::find($id);
+        $message->delete();
+        return response([
+            'Result'=>"Request deleted!"
         ]);
     }
 }
